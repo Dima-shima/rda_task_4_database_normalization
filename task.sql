@@ -1,5 +1,5 @@
 -- Create database and tables
-
+DROP DATABASE IF EXISTS ShopDB;
 CREATE DATABASE ShopDB;
 USE ShopDB;
 
@@ -8,19 +8,6 @@ CREATE TABLE Countries (
     Name VARCHAR(50),
     PRIMARY KEY (ID)
 );
-
-CREATE TABLE ProductInventory (
-    ID INT,
-    ProductID INT,
-    WarehouseAmount INT,
-    WarehouseID INT, 
-    CountryID INT,
-    FOREIGN KEY (ProductID) REFERENCES Products(ID) ON DELETE NO ACTION,
-    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE NO ACTION,
-	FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE NO ACTION,
-    PRIMARY KEY (ID)
-);
-
 CREATE TABLE Products (
     ID INT,
     Name VARCHAR(50),
@@ -31,6 +18,17 @@ CREATE TABLE Warehouses (
     ID INT,
     Name VARCHAR(50),
     WarehouseAddress VARCHAR(50),
+    PRIMARY KEY (ID)
+);
+CREATE TABLE ProductInventory (
+    ID INT,
+    ProductID INT,
+    WarehouseAmount INT,
+    WarehouseID INT, 
+    CountryID INT,
+    FOREIGN KEY (ProductID) REFERENCES Products(ID) ON DELETE NO ACTION,
+    FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE NO ACTION,
+	FOREIGN KEY (CountryID) REFERENCES Countries(ID) ON DELETE NO ACTION,
     PRIMARY KEY (ID)
 );
 
